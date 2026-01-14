@@ -33,13 +33,13 @@ extension AvatarStateExtension on AvatarState {
   String get description {
     switch (this) {
       case AvatarState.idle:
-        return 'Idle';
+        return 'Đang hoạt động';
       case AvatarState.talking:
-        return 'Talking';
+        return 'Đang nói';
       case AvatarState.waiting:
-        return 'Waiting';
+        return 'Đang chờ';
       case AvatarState.thinking:
-        return 'Thinking';
+        return 'Đang suy nghĩ';
     }
   }
 

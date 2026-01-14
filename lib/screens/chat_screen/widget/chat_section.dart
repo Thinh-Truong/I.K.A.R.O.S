@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'chat_list_view.dart';
-import 'chat_provider.dart';
+import '../bloc/chat_provider.dart';
 
 /// Chat Section (expanded) with header and collapse action
 class ChatSection extends StatelessWidget {
@@ -38,7 +38,7 @@ class ChatSection extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.symmetric(
                     horizontal: 12,
-                    vertical: 8,
+                    vertical: 12,
                   ),
                   child: Row(
                     children: [
@@ -50,27 +50,33 @@ class ChatSection extends StatelessWidget {
                           color: theme.colorScheme.onSurfaceVariant.withValues(
                             alpha: 0.3,
                           ),
-                          borderRadius: BorderRadius.circular(2),
+                          borderRadius: BorderRadius.circular(12),
                         ),
                       ),
                       Expanded(
                         child: Text(
                           'Chat',
                           style: theme.textTheme.titleMedium?.copyWith(
-                            fontWeight: FontWeight.w600,
+                            fontWeight: FontWeight.w500,
                           ),
                           overflow: TextOverflow.ellipsis,
                         ),
                       ),
-                      IconButton(
-                        tooltip: 'Thu gọn',
-                        onPressed: () => chatProvider.toggleChatExpanded(),
-                        icon: const Icon(Icons.expand_more_rounded),
-                        color: theme.colorScheme.primary,
-                        style: IconButton.styleFrom(
-                          backgroundColor: theme.colorScheme.primaryContainer,
-                        ),
-                      ),
+                      // IconButton(
+                      //   tooltip: 'Thu gọn',
+                      //   onPressed: () => chatProvider.toggleChatExpanded(),
+                      //   icon: const Icon(Icons.expand_more_rounded),
+                      //   color: theme.colorScheme.primary,
+                      //   padding: EdgeInsets.zero,
+                      //   constraints: const BoxConstraints(
+                      //     minWidth: 32,
+                      //     minHeight: 32,
+                      //   ),
+                      //   splashRadius: 18,
+                      //   style: IconButton.styleFrom(
+                      //     backgroundColor: theme.colorScheme.primaryContainer,
+                      //   ),
+                      // ),
                     ],
                   ),
                 ),
@@ -104,7 +110,7 @@ class ChatCollapsedBar extends StatelessWidget {
             }
           },
           child: Container(
-            height: 52,
+            height: 42,
             decoration: BoxDecoration(
               color: theme.colorScheme.surface,
               borderRadius: const BorderRadius.only(
@@ -123,7 +129,7 @@ class ChatCollapsedBar extends StatelessWidget {
                     color: theme.colorScheme.onSurfaceVariant.withValues(
                       alpha: 0.3,
                     ),
-                    borderRadius: BorderRadius.circular(2),
+                    borderRadius: BorderRadius.circular(12),
                   ),
                 ),
                 Expanded(
@@ -133,15 +139,21 @@ class ChatCollapsedBar extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                   ),
                 ),
-                IconButton(
-                  tooltip: 'Mở rộng',
-                  onPressed: () => chatProvider.toggleChatExpanded(),
-                  icon: const Icon(Icons.expand_less_rounded),
-                  color: theme.colorScheme.primary,
-                  style: IconButton.styleFrom(
-                    backgroundColor: theme.colorScheme.primaryContainer,
-                  ),
-                ),
+                // IconButton(
+                //   tooltip: 'Mở rộng',
+                //   onPressed: () => chatProvider.toggleChatExpanded(),
+                //   icon: const Icon(Icons.expand_less_rounded),
+                //   color: theme.colorScheme.primary,
+                //   padding: EdgeInsets.zero,
+                //   constraints: const BoxConstraints(
+                //     minWidth: 32,
+                //     minHeight: 32,
+                //   ),
+                //   splashRadius: 18,
+                //   style: IconButton.styleFrom(
+                //     backgroundColor: theme.colorScheme.primaryContainer,
+                //   ),
+                // ),
               ],
             ),
           ),

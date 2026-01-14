@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:ikaros/screens/chat_screen/widget/chat_provider.dart';
+import 'package:ikaros/screens/chat_screen/bloc/chat_provider.dart';
 import 'package:ikaros/utils/nav.dart';
 import 'package:ikaros/utils/theme.dart';
 import 'package:provider/provider.dart';
@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [ChangeNotifierProvider(create: (_) => ChatProvider())],
       child: MaterialApp.router(
-        title: 'Ikaros', // fallback value
+        title: dotenv.env['APP_NAME'] ?? '', // fallback value
         debugShowCheckedModeBanner: false,
         theme: darkTheme,
         darkTheme: darkTheme,

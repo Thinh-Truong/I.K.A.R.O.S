@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:ikaros/screens/chat_screen/widget/chat_bubble.dart';
 import 'package:provider/provider.dart';
-
 import '../../../utils/ui_constants.dart';
-import 'chat_bubble.dart';
-import 'chat_provider.dart';
+
+import '../bloc/chat_provider.dart';
 
 /// Chat list view displaying all messages in the conversation
 class ChatListView extends StatefulWidget {
@@ -48,24 +48,24 @@ class _ChatListViewState extends State<ChatListView> {
           decoration: BoxDecoration(
             color: Theme.of(context).colorScheme.surface,
             borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(24),
-              topRight: Radius.circular(24),
+              topLeft: Radius.circular(20),
+              topRight: Radius.circular(20),
             ),
           ),
           child: Column(
             children: [
               // Handle bar
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 12),
+                padding: const EdgeInsets.symmetric(vertical: 1),
                 child: Container(
                   width: 40,
-                  height: 4,
-                  decoration: BoxDecoration(
-                    color: Theme.of(
-                      context,
-                    ).colorScheme.onSurfaceVariant.withValues(alpha: 0.3),
-                    borderRadius: BorderRadius.circular(2),
-                  ),
+                  // height: 2,
+                  // decoration: BoxDecoration(
+                  //   color: Theme.of(
+                  //     context,
+                  //   ).colorScheme.onSurfaceVariant.withValues(alpha: 0.3),
+                  //   borderRadius: BorderRadius.circular(2),
+                  // ),
                 ),
               ),
 
@@ -108,7 +108,7 @@ class _TypingIndicator extends StatelessWidget {
       child: Row(
         children: [
           Container(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
             decoration: BoxDecoration(
               color: Theme.of(context).colorScheme.surfaceContainerHighest,
               borderRadius: const BorderRadius.only(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:ikaros/screens/text_to_speech.dart';
 
 import '../screens/chat_screen/chat_screen.dart';
 
@@ -12,7 +13,7 @@ class AppRouter {
         path: AppRoutes.chat,
         name: 'chat',
         pageBuilder: (context, state) =>
-            const NoTransitionPage(child: ChatScreen()),
+            const NoTransitionPage(child: TextToSpeechPage()),
       ),
     ],
   );

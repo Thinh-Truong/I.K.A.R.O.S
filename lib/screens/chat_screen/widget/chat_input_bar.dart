@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:ikaros/screens/chat_screen/bloc/chat_provider.dart';
+import 'package:ikaros/utils/ui_constants.dart';
 import 'package:provider/provider.dart';
 
-import '../../../utils/ui_constants.dart';
-import 'chat_provider.dart';
-
-/// Chat input bar with text field and action buttons
 class ChatInputBar extends StatefulWidget {
   const ChatInputBar({super.key});
 
@@ -36,9 +34,7 @@ class _ChatInputBarState extends State<ChatInputBar> {
       setState(() => _hasText = hasText);
     }
 
-    // Notify provider about typing state
-    final chatProvider = context.read<ChatProvider>();
-    chatProvider.setUserTyping(hasText);
+    context.read<ChatProvider>().setUserTyping(hasText);
   }
 
   Future<void> _sendMessage() async {
@@ -53,25 +49,21 @@ class _ChatInputBarState extends State<ChatInputBar> {
   }
 
   void _showEmojiPicker() {
-    // Placeholder for emoji/affection button
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: const Text('💕 Affection +1'),
-        duration: const Duration(seconds: 1),
+      const SnackBar(
+        content: Text('💕 Affection +1'),
         behavior: SnackBarBehavior.floating,
-        backgroundColor: Theme.of(context).colorScheme.tertiary,
+        duration: Duration(seconds: 1),
       ),
     );
   }
 
   void _startVoiceMessage() {
-    // Placeholder for voice button
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: const Text('🎤 Voice message coming soon!'),
-        duration: const Duration(seconds: 2),
+      const SnackBar(
+        content: Text('🎤 Voice message coming soon!'),
         behavior: SnackBarBehavior.floating,
-        backgroundColor: Theme.of(context).colorScheme.secondary,
+        duration: Duration(seconds: 2),
       ),
     );
   }
@@ -80,7 +72,7 @@ class _ChatInputBarState extends State<ChatInputBar> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    return Container(
+    return Padding(
       padding: EdgeInsets.only(
         left: 16,
         right: 16,
@@ -89,82 +81,56 @@ class _ChatInputBarState extends State<ChatInputBar> {
             UIConstants.inputBarBottomPadding +
             MediaQuery.of(context).padding.bottom,
       ),
-      decoration: BoxDecoration(
-        color: theme.colorScheme.surface,
-        border: Border(
-          top: BorderSide(
-            color: theme.colorScheme.outline.withValues(alpha: 0.2),
-            width: 1,
+      child: TextField(
+        controller: _textController,
+        focusNode: _focusNode,
+        maxLines: 4,
+        minLines: 1,
+        style: theme.textTheme.bodyLarge,
+        onSubmitted: (_) => _sendMessage(),
+        decoration: InputDecoration(
+          hintText: 'Type a message...',
+          filled: true,
+          fillColor: theme.colorScheme.surfaceContainerHighest,
+
+          // 🔵 Viền bo tròn
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(28),
+            borderSide: BorderSide.none,
           ),
-        ),
-      ),
-      child: SafeArea(
-        top: false,
-        child: Row(
-          children: [
-            // 1️⃣ Left icon (mic)
-            IconButton(
-              onPressed: _startVoiceMessage,
-              icon: const Icon(Icons.mic_rounded),
-              color: theme.colorScheme.secondary,
-              style: IconButton.styleFrom(
-                backgroundColor: theme.colorScheme.secondaryContainer,
-              ),
-            ),
-            const SizedBox(width: 8),
 
-            // 2️⃣ TextField (Expanded để chiếm hết space còn lại)
-            Expanded(
-              child: TextField(
-                controller: _textController,
-                focusNode: _focusNode,
-                decoration: InputDecoration(
-                  hintText: 'Type a message...',
-                  filled: true,
-                  fillColor: theme.colorScheme.surfaceContainerHighest,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(24),
-                    borderSide: BorderSide.none,
-                  ),
-                  contentPadding: const EdgeInsets.symmetric(
-                    horizontal: 20,
-                    vertical: 12,
-                  ),
-                ),
-                style: theme.textTheme.bodyLarge,
-                maxLines: 4,
-                minLines: 1,
-                onSubmitted: (_) => _sendMessage(),
-              ),
-            ),
-            const SizedBox(width: 8),
+          // 🎤 Prefix icon (Mic)
+          prefixIcon: IconButton(
+            icon: const Icon(Icons.mic_rounded),
+            onPressed: _startVoiceMessage,
+            splashRadius: 20,
+            color: theme.colorScheme.onSurfaceVariant,
+          ),
 
-            // 3️⃣ Right icon (Send hoặc Favorite)
-            AnimatedSwitcher(
-              duration: const Duration(milliseconds: 200),
-              switchInCurve: Curves.easeIn,
-              switchOutCurve: Curves.easeOut,
-              child: _hasText
-                  ? IconButton(
-                      key: const ValueKey('send'),
-                      onPressed: _sendMessage,
-                      icon: const Icon(Icons.send_rounded),
-                      color: theme.colorScheme.onPrimary,
-                      style: IconButton.styleFrom(
-                        backgroundColor: theme.colorScheme.primary,
-                      ),
-                    )
-                  : IconButton(
-                      key: const ValueKey('favorite'),
-                      onPressed: _showEmojiPicker,
-                      icon: const Icon(Icons.favorite_rounded),
-                      color: theme.colorScheme.tertiary,
-                      style: IconButton.styleFrom(
-                        backgroundColor: theme.colorScheme.tertiaryContainer,
-                      ),
-                    ),
-            ),
-          ],
+          // ❤️ / 📤 Suffix icon (Favorite ↔ Send)
+          suffixIcon: AnimatedSwitcher(
+            duration: const Duration(milliseconds: 200),
+            child: _hasText
+                ? IconButton(
+                    key: const ValueKey('send'),
+                    icon: const Icon(Icons.send_rounded),
+                    onPressed: _sendMessage,
+                    splashRadius: 20,
+                    color: theme.colorScheme.primary,
+                  )
+                : IconButton(
+                    key: const ValueKey('favorite'),
+                    icon: const Icon(Icons.favorite_rounded),
+                    onPressed: _showEmojiPicker,
+                    splashRadius: 20,
+                    color: theme.colorScheme.tertiary,
+                  ),
+          ),
+
+          contentPadding: const EdgeInsets.symmetric(
+            horizontal: 16,
+            vertical: 14,
+          ),
         ),
       ),
     );

@@ -116,36 +116,38 @@ class LightModeColors {
 
 /// Dark mode colors with romantic pastel tones
 class DarkModeColors {
-  // Primary: Soft rose for dark backgrounds
-  static const darkPrimary = Color(0xFFFFB3C9);
-  static const darkOnPrimary = Color(0xFF5C1A2E);
-  static const darkPrimaryContainer = Color(0xFF7D2E46);
-  static const darkOnPrimaryContainer = Color(0xFFFFDAE4);
+  static const primary = Color(0xFF4DA3FF);
+  static const onPrimary = Color(0xFF001E30);
+  static const primaryContainer = Color(0xFF003A5C);
+  static const onPrimaryContainer = Color(0xFFCFE8FF);
 
-  // Secondary: Soft lavender
-  static const darkSecondary = Color(0xFFD4BEED);
-  static const darkOnSecondary = Color(0xFF3E2654);
+  static const secondary = Color(0xFF4CAF50);
+  static const onSecondary = Color(0xFF0E2B14);
+  static const secondaryContainer = Color(0xFF1F4D28);
+  static const onSecondaryContainer = Color(0xFFCDEED3);
 
-  // Tertiary: Warm peach
-  static const darkTertiary = Color(0xFFFFCCBC);
-  static const darkOnTertiary = Color(0xFF5A2418);
+  static const tertiary = Color(0xFFE53935);
+  static const onTertiary = Color(0xFF2B0000);
+  static const tertiaryContainer = Color(0xFF5A1412);
+  static const onTertiaryContainer = Color(0xFFFFDAD6);
 
-  // Error colors
-  static const darkError = Color(0xFFFFB4AB);
-  static const darkOnError = Color(0xFF690005);
-  static const darkErrorContainer = Color(0xFF93000A);
-  static const darkOnErrorContainer = Color(0xFFFFDAD6);
+  static const error = Color(0xFFFF6F61);
+  static const onError = Color(0xFF410002);
 
-  // Surface and background: Warm dark mode
-  static const darkSurface = Color(0xFF1C1517);
-  static const darkOnSurface = Color(0xFFF0E0E6);
-  static const darkSurfaceVariant = Color(0xFF4A3842);
-  static const darkOnSurfaceVariant = Color(0xFFD4C5CC);
+  // 🖤 Background & Surface
+  static const surface = Color(0xFF0E0F12);
+  static const onSurface = Color(0xFFE6E8EC);
 
-  // Outline and shadow
-  static const darkOutline = Color(0xFF9C858E);
-  static const darkShadow = Color(0xFF000000);
-  static const darkInversePrimary = Color(0xFFFF9EB7);
+  static const surfaceVariant = Color(0xFF1A1C22);
+  static const onSurfaceVariant = Color(0xFFB9BCC6);
+
+  // ✏ Outline
+  static const outline = Color(0xFF3A3D46);
+
+  // 🌑 Shadow
+  static const shadow = Color(0xFF000000);
+
+  static const inversePrimary = Color(0xFF4DA3FF);
 }
 
 /// Font size constants
@@ -219,32 +221,37 @@ ThemeData get lightTheme => ThemeData(
 /// Dark theme with good contrast and readability
 ThemeData get darkTheme => ThemeData(
   useMaterial3: true,
-  colorScheme: ColorScheme.dark(
-    primary: DarkModeColors.darkPrimary,
-    onPrimary: DarkModeColors.darkOnPrimary,
-    primaryContainer: DarkModeColors.darkPrimaryContainer,
-    onPrimaryContainer: DarkModeColors.darkOnPrimaryContainer,
-    secondary: DarkModeColors.darkSecondary,
-    onSecondary: DarkModeColors.darkOnSecondary,
-    tertiary: DarkModeColors.darkTertiary,
-    onTertiary: DarkModeColors.darkOnTertiary,
-    error: DarkModeColors.darkError,
-    onError: DarkModeColors.darkOnError,
-    errorContainer: DarkModeColors.darkErrorContainer,
-    onErrorContainer: DarkModeColors.darkOnErrorContainer,
-    surface: DarkModeColors.darkSurface,
-    onSurface: DarkModeColors.darkOnSurface,
-    surfaceContainerHighest: DarkModeColors.darkSurfaceVariant,
-    onSurfaceVariant: DarkModeColors.darkOnSurfaceVariant,
-    outline: DarkModeColors.darkOutline,
-    shadow: DarkModeColors.darkShadow,
-    inversePrimary: DarkModeColors.darkInversePrimary,
+  colorScheme: const ColorScheme.dark(
+    primary: DarkModeColors.primary,
+    onPrimary: DarkModeColors.onPrimary,
+    primaryContainer: DarkModeColors.primaryContainer,
+    onPrimaryContainer: DarkModeColors.onPrimaryContainer,
+
+    secondary: DarkModeColors.secondary,
+    onSecondary: DarkModeColors.onSecondary,
+
+    tertiary: DarkModeColors.tertiary,
+    onTertiary: DarkModeColors.onTertiary,
+
+    error: DarkModeColors.error,
+    onError: DarkModeColors.onError,
+
+    surface: DarkModeColors.surface,
+    onSurface: DarkModeColors.onSurface,
+
+    surfaceContainerHighest: DarkModeColors.surfaceVariant,
+    onSurfaceVariant: DarkModeColors.onSurfaceVariant,
+
+    outline: DarkModeColors.outline,
+    shadow: DarkModeColors.shadow,
+
+    inversePrimary: DarkModeColors.inversePrimary,
   ),
   brightness: Brightness.dark,
-  scaffoldBackgroundColor: DarkModeColors.darkSurface,
+  scaffoldBackgroundColor: DarkModeColors.surface,
   appBarTheme: const AppBarTheme(
     backgroundColor: Colors.transparent,
-    foregroundColor: DarkModeColors.darkOnSurface,
+    foregroundColor: DarkModeColors.onSurface,
     elevation: 0,
     scrolledUnderElevation: 0,
   ),
@@ -252,10 +259,7 @@ ThemeData get darkTheme => ThemeData(
     elevation: 0,
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(12),
-      side: BorderSide(
-        color: DarkModeColors.darkOutline.withOpacity(0.2),
-        width: 1,
-      ),
+      side: BorderSide(color: DarkModeColors.outline, width: 1),
     ),
   ),
   textTheme: _buildTextTheme(Brightness.dark),

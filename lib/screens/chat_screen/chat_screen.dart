@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:ikaros/data_model/avatar_state.dart';
+import 'package:ikaros/screens/chat_screen/bloc/chat_provider.dart';
+import 'package:ikaros/screens/chat_screen/widget/chat_app_bar.dart';
 import 'package:ikaros/screens/chat_screen/widget/avatar_view.dart';
 import 'package:ikaros/screens/chat_screen/widget/chat_input_bar.dart';
-import 'package:ikaros/screens/chat_screen/widget/chat_provider.dart';
 import 'package:ikaros/screens/chat_screen/widget/chat_section.dart';
 import 'package:provider/provider.dart';
 
@@ -12,28 +15,11 @@ class ChatScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const Text('💕'),
-            const SizedBox(width: 8),
-            Text(
-              'My Girlfriend',
-              style: Theme.of(
-                context,
-              ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w600),
-            ),
-          ],
-        ),
-        centerTitle: true,
-        actions: [
-          IconButton(
-            onPressed: () => _showOptionsMenu(context),
-            icon: const Icon(Icons.more_vert_rounded),
-            tooltip: 'Options',
-          ),
-        ],
+      appBar: ChatAppBar(
+        onMenuPressed: () => _showOptionsMenu(context),
+        statusText:
+            context.watch<ChatProvider>().avatarState.description + "...",
+        nameText: dotenv.env['APP_NAME'],
       ),
       body: Consumer<ChatProvider>(
         builder: (context, chatProvider, _) {
