@@ -5,8 +5,10 @@ import 'package:ikaros/utils/nav.dart';
 import 'package:ikaros/utils/theme.dart';
 import 'package:provider/provider.dart';
 
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   try {
     await dotenv.load(fileName: ".env");
   } catch (e) {

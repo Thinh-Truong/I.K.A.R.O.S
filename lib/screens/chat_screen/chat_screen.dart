@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:ikaros/avatar_3d_view.dart';
 import 'package:ikaros/data_model/avatar_state.dart';
+import 'package:ikaros/screens/avatar_1.dart';
 import 'package:ikaros/screens/chat_screen/bloc/chat_provider.dart';
 import 'package:ikaros/screens/chat_screen/widget/chat_app_bar.dart';
 import 'package:ikaros/screens/chat_screen/widget/avatar_view.dart';
@@ -29,7 +31,8 @@ class ChatScreen extends StatelessWidget {
               // Avatar Area: grows when chat is collapsed
               Expanded(
                 flex: isExpanded ? 45 : 85,
-                child: AvatarView(state: chatProvider.avatarState),
+                // child: AvatarView(state: chatProvider.avatarState),
+                child: Avatar1(),
               ),
 
               // Chat Area: expanded section or collapsed bar

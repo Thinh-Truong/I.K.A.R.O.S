@@ -10,7 +10,8 @@ class OpenRouterService {
 
   OpenRouterService({
     required this.apiKey,
-    this.model = 'openai/gpt-oss-120b:free',
+    //this.model = 'openai/gpt-oss-120b:free',
+    this.model = 'arcee-ai/trinity-large-preview:free',
   });
 
   Future<String> sendMessage({

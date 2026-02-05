@@ -75,7 +75,7 @@ class ChatProvider with ChangeNotifier {
   void _initializeChat() {
     final welcomeMessage = ChatMessage(
       id: DateTime.now().millisecondsSinceEpoch.toString(),
-      text: "Hi! I'm so happy to see you! 💕 How are you doing today?",
+      text: "Chào anh~ Em rất vui khi được gặp anh hôm nay",
       isUser: false,
       timestamp: DateTime.now(),
     );

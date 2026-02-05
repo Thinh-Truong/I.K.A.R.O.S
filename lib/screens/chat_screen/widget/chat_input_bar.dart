@@ -89,17 +89,15 @@ class _ChatInputBarState extends State<ChatInputBar> {
         style: theme.textTheme.bodyLarge,
         onSubmitted: (_) => _sendMessage(),
         decoration: InputDecoration(
-          hintText: 'Type a message...',
+          hintText: 'Gửi tin nhắn...',
           filled: true,
           fillColor: theme.colorScheme.surfaceContainerHighest,
 
-          // 🔵 Viền bo tròn
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(28),
             borderSide: BorderSide.none,
           ),
 
-          // 🎤 Prefix icon (Mic)
           prefixIcon: IconButton(
             icon: const Icon(Icons.mic_rounded),
             onPressed: _startVoiceMessage,
@@ -107,7 +105,6 @@ class _ChatInputBarState extends State<ChatInputBar> {
             color: theme.colorScheme.onSurfaceVariant,
           ),
 
-          // ❤️ / 📤 Suffix icon (Favorite ↔ Send)
           suffixIcon: AnimatedSwitcher(
             duration: const Duration(milliseconds: 200),
             child: _hasText
